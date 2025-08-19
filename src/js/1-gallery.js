@@ -105,10 +105,12 @@ function initGallery(images, selector) {
         captionDelay: 250,
     });
 
-    gallery.on("show.simplelightbox", () => {
-        const imageLink = gallery.currentImage;
-        const href = imageLink ? imageLink.href : "посилання відсутнє";
-        console.log("Open foto:", href);
+  gallery.on("show.simplelightbox", (e) => {
+    console.log("Modal window open.");
+    const imageLink = e.target;
+    const href = imageLink ? imageLink.href : "посилання відсутнє";
+
+      console.log("Open foto, link:", href);
         
         setTimeout(() => {
             const overlay = document.querySelector(".sl-overlay");
@@ -118,16 +120,23 @@ function initGallery(images, selector) {
 
         }, 0);
        
-    });
-    gallery.on("close.simplelightbox", () => {
+  });
+  
+  gallery.on("changed.simplelightbox", (e) => {
+    const imageLink = e.target; 
+    const href = imageLink ? imageLink.href : "посилання відсутнє";
+    console.log("Foto change, new link:", href);
+      });
+  
+  
+  gallery.on("close.simplelightbox", () => {
+        console.log("Modal window close.");
+        
         const overlay = document.querySelector(".sl-overlay");
 
         if (overlay) {
             overlay.style.backgroundColor = "";
         }
-
-
-
     })
 
 }
