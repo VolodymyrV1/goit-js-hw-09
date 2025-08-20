@@ -15,7 +15,7 @@
 
 .input-email {
     height: 40px;
-    width: 360px;
+    /* width: 360px; */
     border: 1px solid #808080;
     border-radius: 4px;
 }
